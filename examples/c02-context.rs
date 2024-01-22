@@ -32,9 +32,10 @@ async fn main() -> Result<()> {
 			gen_req = gen_req.context(last_ctx);
 		}
 
-		let final_data = gen_stream_print(&ollama, gen_req).await?;
+		let mut final_data_list = gen_stream_print(&ollama, gen_req).await?;
 
-		if let Some(final_data) = final_data {
+		// NOTE: For now, just take the latest fina_data (should be fine in this usecase)
+		if let Some(final_data) = final_data_list.pop() {
 			last_ctx = Some(final_data.context);
 
 			// Save for debug
