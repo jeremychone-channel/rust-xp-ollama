@@ -46,7 +46,9 @@ pub mod gen {
 		let mut final_data_responses = Vec::new();
 
 		while let Some(res) = stream.next().await {
-			let res_list = res.map_err(|_| "stream_next error")?;
+			// NOTE: For now, we just flatten this result list since it will most likely be a vec of one.
+			//       However, if res.length > 1, we might want to split the output, as those might be for different responses.
+			let res_list = res?;
 
 			for res in res_list {
 				let bytes = res.response.as_bytes();
