@@ -10,3 +10,24 @@ Quantum computing represents a monumental leap forward in computational capabili
 
 Sourdough bread, with its distinctive tangy flavor and chewy texture, has experienced a resurgence in popularity. Unlike regular bread, sourdough does not rely on commercial yeast for fermentation. Instead, it uses a 'starter' – a fermented mixture of flour and water that contains wild yeast and lactic acid bacteria. The fermentation process, which can take several hours to days, not only contributes to the bread's unique flavor but also breaks down gluten, making it easier to digest. Sourdough bread making is considered an art, requiring skill and patience, as each starter develops its own unique characteristics over time, 
 influenced by its specific environment. Also, it's delicious.
+
+## Generate function based
+
+In OpenAI, to generate a function based on a specific task or requirement, you should provide a clear and detailed description of the function's purpose, inputs, outputs, and any specific behaviors or constraints it should adhere to. Here's a structured way to ask for the generation of a function:
+
+1. **Function Purpose**: Start by describing what you want the function to achieve. Be specific about the task or problem the function is designed to solve.
+
+2. **Inputs**: Specify the inputs the function should take. Include details about the type of each input (e.g., string, number, list) and any assumptions about the input values (e.g., non-negative numbers, non-empty strings).
+
+3. **Outputs**: Describe the expected output of the function. Include the output type and any specific conditions the output should meet.
+
+4. **Constraints and Behaviors**: If there are any specific constraints (e.g., time complexity, space usage) or behaviors (e.g., error handling, edge cases) the function should adhere to, mention them clearly.
+
+5. **Examples**: Providing one or more examples can be very helpful. For each example, list the input(s) and the expected output. This helps clarify the function's intended behavior.
+
+Here is an example request based on these guidelines:
+
+"I need a function that calculates the area of a rectangle. The function should take two inputs: the length and the width of the rectangle, both of which are numbers greater than zero. The output should be a single number representing the area of the rectangle, calculated as the product of the length and width. The function should handle inputs that are not numbers by returning an error message. Could you generate a Python function that meets these requirements, including a simple error check for the input types?"
+
+This request clearly defines the function's purpose, inputs, outputs, and specific behaviors, making it easier to generate a precise and useful function.
+

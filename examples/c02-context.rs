@@ -1,6 +1,6 @@
 // region:    --- Modules
 
-use xp_ollama::consts::MODEL;
+use xp_ollama::consts::MODEL_MIXTRAL;
 use xp_ollama::gen::gen_stream_print;
 use xp_ollama::Result;
 
@@ -26,7 +26,7 @@ async fn main() -> Result<()> {
 	for prompt in prompts {
 		println!("\n->> prompt: {prompt}");
 		let mut gen_req =
-			GenerationRequest::new(MODEL.to_string(), prompt.to_string());
+			GenerationRequest::new(MODEL_MIXTRAL.to_string(), prompt.to_string());
 
 		if let Some(last_ctx) = last_ctx.take() {
 			gen_req = gen_req.context(last_ctx);

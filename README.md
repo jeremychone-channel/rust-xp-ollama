@@ -25,6 +25,9 @@ cargo watch -q -c -x "run -q --example c03-chat"
 
 cargo run --example c04-embeddings
 cargo watch -q -c -x "run -q --example c04-embeddings"
+
+cargo run --example c05-models
+cargo watch -q -c -x "run -q --example c05-models"
 ```
 
 ## Some `.sh/.zsh` aliases / functions

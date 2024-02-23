@@ -1,6 +1,6 @@
 // region:    --- Modules
 
-use xp_ollama::consts::{DEFAULT_SYSTEM_MOCK, MODEL};
+use xp_ollama::consts::{DEFAULT_SYSTEM_MOCK, MODEL_MIXTRAL};
 use xp_ollama::Result;
 
 use futures::StreamExt;
@@ -35,7 +35,7 @@ async fn main() -> Result<()> {
 		thread_msgs.push(prompt_msg);
 
 		let chat_req =
-			ChatMessageRequest::new(MODEL.to_string(), thread_msgs.clone());
+			ChatMessageRequest::new(MODEL_MIXTRAL.to_string(), thread_msgs.clone());
 
 		let msg_content = run_chat_req(&ollama, chat_req).await?;
 

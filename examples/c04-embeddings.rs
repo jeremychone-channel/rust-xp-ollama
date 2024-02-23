@@ -6,12 +6,19 @@ use ollama_rs::Ollama;
 use simple_fs::{ensure_dir, read_to_string, save_be_f64, save_json};
 use std::fs;
 use std::path::Path;
-use xp_ollama::consts::MODEL;
+use std::time::Instant;
 
 // endregion: --- Modules
 
 const MOCK_DIR: &str = "_mock-data";
 const C04_DIR: &str = ".c04-data";
+
+// IMPORTANT: Make sure to ollama run/pull `mixtral` and `nomic-embed-text` first.
+//            You can run `cargo run --example c05-models` to install `nomic-embed-text`
+// `mixtral` model (avg per embeddings ~1000ms)
+// const EMBEDDINGS_MODEL: &str = xp_ollama::consts::MODEL_MIXTRAL;
+// 10x faster (avg per embeddings ~30ms)
+const EMBEDDINGS_MODEL: &str = xp_ollama::consts::MODEL_NOMIC;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -20,9 +27,11 @@ async fn main() -> Result<()> {
 	ensure_dir(C04_DIR)?;
 
 	let txt = read_to_string(Path::new(MOCK_DIR).join("for-embeddings.txt"))?;
-	let splits = simple_text_splitter(&txt, 500)?;
+	let splits = simple_text_splitter(&txt, 1000)?;
+	let splits_len = splits.len();
 
 	println!("->>      splits count: {}", splits.len());
+	let mut total_duration_us: u128 = 0;
 
 	for (i, seg) in splits.into_iter().enumerate() {
 		println!();
@@ -30,10 +39,13 @@ async fn main() -> Result<()> {
 		let path = Path::new(C04_DIR).join(file_name);
 		fs::write(path, &seg)?;
 
-		println!("->>       text length: {}", txt.len());
+		println!("->>       text length: {}", seg.len());
+
+		let start = Instant::now();
 		let res = ollama
-			.generate_embeddings(MODEL.to_string(), seg, None)
+			.generate_embeddings(EMBEDDINGS_MODEL.to_string(), seg, None)
 			.await?;
+		total_duration_us += start.elapsed().as_micros();
 
 		println!("->> embeddings length: {}", res.embeddings.len());
 
@@ -44,6 +56,9 @@ async fn main() -> Result<()> {
 		let file_path = Path::new(C04_DIR).join(file_name);
 		save_be_f64(&file_path, &res.embeddings)?;
 	}
+
+	let duration_ms = total_duration_us / splits_len as u128 / 1000;
+	println!("\n->> average duration per embeddings: {duration_ms}ms");
 
 	Ok(())
 }

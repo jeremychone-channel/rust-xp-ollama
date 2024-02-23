@@ -8,7 +8,8 @@ pub type Error = Box<dyn std::error::Error>; // For early dev.
 
 pub mod consts {
 
-	pub const MODEL: &str = "mixtral";
+	pub const MODEL_MIXTRAL: &str = "mixtral";
+	pub const MODEL_NOMIC: &str = "nomic-embed-text:latest";
 
 	pub const DEFAULT_SYSTEM_MOCK: &str = r#"
 		Always be very concise in your answer. 
