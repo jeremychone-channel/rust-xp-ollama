@@ -3,12 +3,14 @@
 - [YouTube Rust Ollama Video](https://www.youtube.com/watch?v=OcH-zT5VNgM&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q)
 	- [GitHub Repo Tag: E01](https://github.com/jeremychone-channel/rust-xp-ollama/tree/E01)
 	- [Fix for ollama-rs 0.1.6 - Tag: E01-01](https://github.com/jeremychone-channel/rust-xp-ollama/tree/E01-01)
-	 
-- [Rust10x VSCode Extension](https://rust10x.com/vscode)
+
+- Related Links: 
+	- [Ollama API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md#generate-a-chat-completion)
+	- [Learn Rust OpenAI API - Building AI Buddy from Scratch!!!](https://www.youtube.com/watch?v=PHbCmIckV20&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q)
+	- [Rust10x VSCode Extension](https://rust10x.com/vscode)
 
 > **IMPORTANT** 
 `ollama-rs 0.1.6` introduced a change where `stream.next()` now returns a `Result<Vec<GenerationResponse>>` instead of a single `GenerationResponse`. The fix is straightforward. It has been implemented in the main branch and tagged as [E01-01](https://github.com/jeremychone-channel/rust-xp-ollama/tree/E01-01).
-
 
 
 ## Cargo Runs & Watches
